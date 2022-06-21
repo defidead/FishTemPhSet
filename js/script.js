@@ -245,8 +245,8 @@ function showChart(sid, ctype, unit, step, data) {
  *********************************************************************************************/
 $('#btn_img').click(function(){
   if($('#btn_img').attr('src') == 'images/on.gif'){
-    rtc.sendMessage(mySensorMac, "{CD1=7,D1=?}");                   // 发送关闭水泵指令
+    rtc.sendMessage(mySensorMac, "{CD1=128,D1=?}");                   // 发送关闭水泵指令
   }else{
-    rtc.sendMessage(mySensorMac, "{OD1=7,D1=?}");                   // 发送打开水泵指令
+    rtc.sendMessage(mySensorMac, "{OD1=128,D1=?}");                   // 发送打开水泵指令
   }
 })
