@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* 页头 */
+.header {
+    width: 100%;
+    background-color: #323a45;
+    color: #fff;
+    font-size: 12px;
+}
+
+.header>div {
+    width: 1170px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+/* 页中 */
+.main {
+    width: 100%;
+}
+
+.main>div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    margin: 10vh 0;
+    font-size: 4rem;
+    color: rgb(0, 171, 238);
+}
+#chart_box>select{
+    width: 10vw;
+    margin: 5vh 16vw;
+
+}
+#chart_box1>select{
+    width: 10vw;
+    margin: 5vh 16vw;
+
+}
+/* 页尾 */
+.footer {
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+    font-size: 12px;
+    background-color: #323a45;
+    color: #fff;
+    text-align: center;
+}

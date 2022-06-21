@@ -1,0 +1,67 @@
+<!DOCTYPE html >
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/index.css">
+<title>历史数据示例</title>
+</head>
+<body>
+  <!-- 页头 -->
+  <div class="header">
+    <div>
+      <div>
+        <h1>历史数据示例</h1>
+      </div>
+      <div id="ConnectState">数据服务连接中...</div>
+    </div>
+  </div>
+  <!-- 页中 -->
+  <div class="main">
+  <div>
+    <div>鱼缸水温：</div>
+      <div id="currentTem">--℃</div>
+    </div>
+    <div class="main">
+      <div>
+    <div >鱼缸ph值</div>
+    <div id="currentph">--ph</div>
+    </div>
+  </div>
+    <div id="chart_box">
+      <select class="form-control" id="MessSet" >
+        <option value="queryLast1H">最近1小时温度</option>
+        <option value="queryLast6H">最近6小时温度</option>
+        <option value="queryLast12H">最近12小时温度</option>
+        <option value="queryLast1D">最近1天温度</option>
+        <option value="queryLast14D">最近2周温度</option>
+        <option value="queryLast1M">最近1月温度</option>
+        <option value="queryLast3M">最近3月温度</option>
+        <option value="queryLast6M">最近半年温度</option>
+        <option value="queryLast1Y">最近1年温度</option>
+      </select>
+      <div id="line_charts" style="width:70vw;height:40vh;margin:0 auto;"></div>
+    </div>
+    <div id="chart_box1">
+      <select class="form-control" id="PHMessSet" >
+        <option value="queryLast1H">最近1小时ph</option>
+        <option value="queryLast6H">最近6小时ph</option>
+        <option value="queryLast12H">最近12小时ph</option>
+        <option value="queryLast1D">最近1天ph</option>
+        <option value="queryLast14D">最近2周ph</option>
+        <option value="queryLast1M">最近1月ph</option>
+        <option value="queryLast3M">最近3月ph</option>
+        <option value="queryLast6M">最近半年ph</option>
+        <option value="queryLast1Y">最近1年ph</option>
+      </select>
+      <div id="line_PHcharts" style="width:70vw;height:40vh;margin:0 auto;"></div>
+    </div>
+  </div>
+  <!--引入js-->
+  <script  src="js/jquery-1.11.0.min.js"></script>
+  <script  src="js/highcharts.js"></script>
+  <script  src="js/WSN/WSNRTConnect.js"></script>
+  <script  src="js/WSN/WSNHistory.js"></script>
+  <script  src="js/script.js"></script>
+</body>
+</html>
