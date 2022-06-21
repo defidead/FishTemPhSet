@@ -47,9 +47,9 @@ $(function(){
           }
           if (t[0] == "D1"){                      //判断参数d1
             var DumpStatus = parseInt(t[1]);      //根据D1的值进行开关的切换
-            if ((DumpStatus & 0x03) == 0x03){
+            if ((DumpStatus & 128) == 128){
               $('#btn_img').attr('src','images/on.gif')}
-            else if ((DumpStatus & 0x03) == 0){
+            else if ((DumpStatus & 128) == 0){
               $('#btn_img').attr('src','images/off.gif')
             }
           }
