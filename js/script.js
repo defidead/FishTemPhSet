@@ -19,7 +19,7 @@ $(function(){
   rtc.setServerAddr("api.zhiyun360.com:28080");                 // 设置服务器地址
   rtc.connect();
   rtc.onConnect = function() {                                  // 连接成功回调函数
-    rtc.sendMessage(mySensorMac, "{A1=?}");// 查询光强初始值
+    rtc.sendMessage(mySensorMac, "{A1=?,A0=?}");// 查询光强初始值
     $("#ConnectState").text("数据服务连接成功！");
   };
 
