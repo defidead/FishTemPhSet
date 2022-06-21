@@ -3,13 +3,13 @@
 *********************************************************************************************/
 var myZCloudID = "817214415179";                                   // 智云帐号
 var myZCloudKey = "CQcGBAIMAAcFAwUMQxNBU11dUFhBEw0ZDAYFBAYMAAQMARsZGl9WX1QWDhEXXUJKURNKVw";                 // 智云密钥
-var mySensorMac = "11:45:14:00:01:14:51:14";                    // 照明灯节点MAC地址
+var mySensorMac = "11:45:14:00:01:14:51:14";                    // 鱼缸节点MAC地址
 
 var channel = `${mySensorMac}_A1`;                              // 传感器数据通道
 var channelph = `${mySensorMac}_A0`;
 var rtc = new WSNRTConnect(myZCloudID, myZCloudKey);            // 创建数据连接服务对象
 var myHisData = new WSNHistory(myZCloudID, myZCloudKey);        // 创建历史数据服务对象
-var LightIntensity;
+var tem;
 var ph;
 
 /*********************************************************************************************
@@ -19,7 +19,7 @@ $(function(){
   rtc.setServerAddr("api.zhiyun360.com:28080");                 // 设置服务器地址
   rtc.connect();
   rtc.onConnect = function() {                                  // 连接成功回调函数
-    rtc.sendMessage(mySensorMac, "{A1=?,A0=?}");// 查询光强初始值
+    rtc.sendMessage(mySensorMac, "{A1=?,A0=?}");// 查鱼缸初始值
     $("#ConnectState").text("数据服务连接成功！");
   };
 
@@ -38,12 +38,20 @@ $(function(){
           var t = its[x].split('=');                            // 以‘=’来分割字符串
           if (t.length != 2) continue;
           if (t[0] == "A1") {                                   // 判断参数A1
-            LightIntensity = parseInt(t[1]);
-            $("#currentTem").text(LightIntensity + "℃");// 在页面显示温度数据
+            tem = parseInt(t[1]);
+            $("#currentTem").text(tem + "℃");// 在页面显示温度数据
           }
           if (t[0] == "A0") {                                   // 判断参数A0
             ph = parseInt(t[1]);
             $("#currentph").text(ph + "ph");      // 在页面显示ph数据
+          }
+          if (t[0] == "D1"){                      //判断参数d1
+            var DumpStatus = parseInt(t[1]);      //根据D1的值进行开关的切换
+            if ((DumpStatus & 0x03) == 0x03){
+              $('#btn_img').attr('src','images/on.gif')}
+            else if ((DumpStatus & 0x03) == 0){
+              $('#btn_img').attr('src','images/off.gif')
+            }
           }
         }
       }
@@ -232,3 +240,13 @@ function showChart(sid, ctype, unit, step, data) {
     }
   });
 }
+/*********************************************************************************************
+ * 处理按键事件
+ *********************************************************************************************/
+$('#btn_img').click(function(){
+  if($('#btn_img').attr('src') == 'images/on.gif'){
+    rtc.sendMessage(mySensorMac, "{CD1=7,D1=?}");                   // 发送关闭水泵指令
+  }else{
+    rtc.sendMessage(mySensorMac, "{OD1=7,D1=?}");                   // 发送打开水泵指令
+  }
+})
