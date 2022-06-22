@@ -47,18 +47,30 @@ $(function(){
           if (t[0] == "A0") {                                   // 判断参数A0
             ph = parseInt(t[1]);
             $("#currentph").text(ph + "ph");      // 在页面显示ph数据
-            if (ph<4||ph>9){$("#note").text("该换水了");}
+            if (ph<4||ph>9){$("#note").text("该换水了");
+              rtc.sendMessage(mySensorMac, "{OD1=128,D1=?}"); }
             else if (ph>4&&ph<9){$("#note").text("水质正常");}
           }
           if (t[0] == "D1"){                      //判断参数d1
             var DumpStatus = parseInt(t[1]);      //根据D1的值进行开关的切换
-            if ((DumpStatus & 128) == 128){
+            if ((DumpStatus & 128) == 128||(DumpStatus & 128) == 128){
               $('#btn_img').attr('src','images/on.gif')
               $("#buttenon").text("开")
             }
             else if ((DumpStatus & 128) == 0){
               $('#btn_img').attr('src','images/off.gif')
               $("#buttenon").text("关")
+            }
+          }
+          if (t[0] == "D1"){                      //判断参数d1
+            var DumpStatus = parseInt(t[1]);      //根据D1的值进行开关的切换
+            if ((DumpStatus & 64) == 64){
+              $('#feed').attr('src','images/feedon.png')
+
+            }
+            else if ((DumpStatus & 64) == 0){
+              $('#feed').attr('src','images/feedoff.png')
+              
             }
           }
         }
@@ -256,5 +268,12 @@ $('#btn_img').click(function(){
     rtc.sendMessage(mySensorMac, "{CD1=128,D1=?}");                   // 发送关闭水泵指令
   }else{
     rtc.sendMessage(mySensorMac, "{OD1=128,D1=?}");                   // 发送打开水泵指令
+  }
+})
+$('#feed').click(function(){
+  if($('#feed').attr('src') == 'images/feedon.png'){
+    rtc.sendMessage(mySensorMac, "{CD1=64,D1=?}");                   // 发送关闭水泵指令
+  }else{
+    rtc.sendMessage(mySensorMac, "{OD1=64,D1=?}");                   // 发送打开水泵指令
   }
 })
