@@ -40,10 +40,14 @@ $(function(){
           if (t[0] == "A1") {                                   // 判断参数A1
             tem = parseInt(t[1]);
             $("#currentTem").text(tem + "℃");// 在页面显示温度数据
+            if (tem<20){$("note1").text("水温过低")};
+            if (tem>50){$("note2").text("水温过高")};
           }
           if (t[0] == "A0") {                                   // 判断参数A0
             ph = parseInt(t[1]);
             $("#currentph").text(ph + "ph");      // 在页面显示ph数据
+            if (ph<4||ph>9){$("#note").text("该换水了");
+            };
           }
           if (t[0] == "D1"){                      //判断参数d1
             var DumpStatus = parseInt(t[1]);      //根据D1的值进行开关的切换

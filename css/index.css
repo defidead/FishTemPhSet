@@ -3,7 +3,20 @@
     margin: 0;
     box-sizing: border-box;
 }
+switch{
+    left: 40px;
+    top: 130px;
+    width: 320px;
+    height: 320px;
 
+}
+.Tem{
+    left: 376px;
+    top: 117px;
+    width: 1004px;
+    height: 146px;
+
+}
 /* 页头 */
 .header {
     width: 100%;
@@ -22,19 +35,25 @@
 }
 
 /* 页中 */
-#switch{
 
-}
 .main {
-    width: 100%;
+    left: 376px;
+    top: 117px;
+    width: 1004px;
+    height: 146px;
 }
 
 .main>div:nth-child(1) {
     display: flex;
-    justify-content: space-around;
     margin: 10vh 0;
     font-size: 4rem;
     color: rgb(0, 171, 238);
+    right: 376px;
+    top: 117px;
+    width: 1004px;
+    height: 146px;
+
+
 }
 #chart_box>select{
     width: 10vw;
