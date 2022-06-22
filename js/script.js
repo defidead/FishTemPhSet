@@ -40,21 +40,25 @@ $(function(){
           if (t[0] == "A1") {                                   // 判断参数A1
             tem = parseInt(t[1]);
             $("#currentTem").text(tem + "℃");// 在页面显示温度数据
-            if (tem<20){$("note1").text("水温过低")};
-            if (tem>50){$("note2").text("水温过高")};
+            if (tem<20){$("#note1").text("水温过低")}
+            else if (tem>50){$("#note1").text("水温过高")}
+            else if (tem>20&&tem<50){$("#note1").text("水温正常")}
           }
           if (t[0] == "A0") {                                   // 判断参数A0
             ph = parseInt(t[1]);
             $("#currentph").text(ph + "ph");      // 在页面显示ph数据
-            if (ph<4||ph>9){$("#note").text("该换水了");
-            };
+            if (ph<4||ph>9){$("#note").text("该换水了");}
+            else if (ph>4&&ph<9){$("#note").text("水质正常");}
           }
           if (t[0] == "D1"){                      //判断参数d1
             var DumpStatus = parseInt(t[1]);      //根据D1的值进行开关的切换
             if ((DumpStatus & 128) == 128){
-              $('#btn_img').attr('src','images/on.gif')}
+              $('#btn_img').attr('src','images/on.gif')
+              $("#buttenon").text("开")
+            }
             else if ((DumpStatus & 128) == 0){
               $('#btn_img').attr('src','images/off.gif')
+              $("#buttenon").text("关")
             }
           }
         }
